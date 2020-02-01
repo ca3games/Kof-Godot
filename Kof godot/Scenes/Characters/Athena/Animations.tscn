@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-1.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-0.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-2.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-3.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-4.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-5.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-6.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-7.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "IDLE",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 25.5831
+height = 152.879
+
+[sub_resource type="Animation" id=3]
+resource_name = "IDLE"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "IDLE" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -15.2306, 4.24746 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -0.376034, 0.25069 ), Vector2( -0.247524, -1.66036 ), Vector2( -0.252876, -1.72138 ), Vector2( -0.244339, 0.273398 ), Vector2( -0.298768, 2.27461 ), Vector2( -2.22931, 4.06123 ), Vector2( -2.26166, 2.4108 ), Vector2( -0.397827, 0.389503 ), Vector2( -0.33041, 0.28479 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D:shape")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 2 ) ]
+}
+
+[node name="Animations" type="RigidBody2D"]
+mode = 2
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -2.22931, 4.06123 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "IDLE"
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -15.2306, 4.24746 )
+shape = SubResource( 2 )
+
+[node name="Feet anchor" type="Position2D" parent="."]
+position = Vector2( -74.4034, 98.2538 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 3 )
