@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-0.png" type="Texture" id=2]
@@ -8,12 +8,29 @@
 [ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-5.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-6.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Characters/Athena/Frames/idle/0_0-7.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-1.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-0.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-2.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-3.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-4.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-5.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-6.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-7.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-8.png" type="Texture" id=17]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-9.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-10.png" type="Texture" id=19]
+[ext_resource path="res://Scenes/Characters/Athena/Frames/walk/0_20-11.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "IDLE",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "Walk",
 "speed": 5.0
 } ]
 
@@ -47,7 +64,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -15.2306, 4.24746 ) ]
+"values": [ Vector2( -15.2306, -2.97256 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("AnimatedSprite:frame")
@@ -86,18 +103,59 @@ tracks/4/keys = {
 "values": [ SubResource( 2 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Walk"
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Walk" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -16.5755, -5.1302 ) ]
+}
+
 [node name="Animations" type="RigidBody2D"]
 mode = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -2.22931, 4.06123 )
+position = Vector2( -16.5755, -5.1302 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "IDLE"
+animation = "Walk"
 frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -15.2306, 4.24746 )
+position = Vector2( -15.2306, -2.97256 )
 shape = SubResource( 2 )
 
 [node name="Feet anchor" type="Position2D" parent="."]
@@ -106,3 +164,4 @@ position = Vector2( -74.4034, 98.2538 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "IDLE"
 anims/IDLE = SubResource( 3 )
+anims/Walk = SubResource( 4 )
